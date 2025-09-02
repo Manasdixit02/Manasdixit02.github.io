@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manas | Robotics & Perception</title>
+  <meta name="description" content="Robotics & perception portfolio: Visual SLAM, Sensor Fusion (CTRA), EKF, and deep learning projects." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --panel: #0f1424;
+      --muted: #a4b1cd;
+      --text: #e8eefc;
+      --accent: #7aa2ff;
+      --accent-2: #2dd4bf;
+      --card: #141b2f;
+      --border: #1f2842;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    * { box-sizing: border-box }
+    html, body { height: 100% }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text); background: radial-gradient(1200px 700px at 70% -10%, rgba(122,162,255,.18), transparent 60%), var(--bg);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none }
+    a:hover { text-decoration: underline }
+    .container { max-width: 1080px; margin: 0 auto; padding: 32px 20px 80px }
+
+    /* Header */
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0; position: sticky; top:0; backdrop-filter: blur(8px); background: rgba(11,15,25,.55); border-bottom: 1px solid var(--border); z-index: 20; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight: 800; letter-spacing: .3px }
+    .badge { font-size:12px; color: var(--muted); border:1px solid var(--border); padding:4px 8px; border-radius: 999px }
+    .links { display:flex; gap:14px; flex-wrap:wrap }
+    .btn { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); background: linear-gradient(180deg, #101730, #0b1124); color: var(--text); padding:10px 14px; border-radius: 999px; box-shadow: var(--shadow); }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(0,0,0,.5) }
+
+    /* Hero */
+    .hero { display:grid; grid-template-columns: 1.2fr .8fr; gap:28px; align-items:center; padding: 42px 0 10px }
+    .hero h1 { font-size: clamp(32px, 4.5vw, 54px); line-height:1.1; margin:0 0 14px }
+    .hero p { color: var(--muted); margin: 10px 0 18px }
+    .hero .cta { display:flex; gap:12px; flex-wrap:wrap }
+    .card { background: linear-gradient(180deg, #0f1426, #0b0f1b); border:1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow) }
+    .chip { display:inline-flex; align-items:center; gap:8px; color:#cfe0ff; background:#0f1a36; border:1px solid #1f2a4d; padding:8px 10px; border-radius:999px; font-size:12px; margin:4px 6px 0 0 }
+    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap:18px }
+
+    /* Section */
+    section { margin: 44px 0 }
+    .section-title { font-size: 22px; margin-bottom: 14px }
+    .subtitle { color: var(--muted); margin-top: -4px; font-size: 14px }
+
+    /* Projects */
+    .projects { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:18px }
+    .project { background: var(--card); border:1px solid var(--border); border-radius: var(--radius); overflow:hidden; transform: translateZ(0); }
+    .project .thumb { aspect-ratio:16/9; background:#0c1326; display:block; width:100%; object-fit:cover; border-bottom:1px solid var(--border) }
+    .project .p-body { padding:14px 14px 16px }
+    .tag { font-size:12px; color:#9db0d8; background:#0f1a36; border:1px solid #1f2a4d; padding:4px 8px; border-radius:999px; margin-right:6px }
+
+    /* Timeline */
+    .timeline { border-left:2px solid var(--border); margin-left: 10px; padding-left: 16px }
+    .t-item { margin: 14px 0 }
+    .t-role { font-weight: 700 }
+    .t-meta { color: var(--muted); font-size: 14px }
+
+    /* Footer */
+    footer { margin-top: 44px; padding-top: 20px; border-top:1px solid var(--border); color: var(--muted) }
+
+    @media (max-width: 860px){
+      .hero { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav container">
+    <div class="brand">Manas <span class="badge">Robotics & Perception</span></div>
+    <div class="links">
+      <a class="btn" href="#projects">Projects</a>
+      <a class="btn" href="#experience">Experience</a>
+      <a class="btn" href="#contact">Contact</a>
+      <a class="btn" href="https://github.com/your-username" target="_blank" rel="noreferrer">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a class="btn" href="resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <h1>Hi, I'm Manas — building reliable robot perception.</h1>
+        <p>MS Robotics @ UMN • Sensor Fusion Intern @ Magna (ADAS)
+        <br/> I work on Visual SLAM in dynamic environments, EKF-based tracking, CTRA motion models, and deep-learning-enhanced perception.</p>
+        <div class="cta">
+          <a class="btn" href="#projects">Explore Projects</a>
+          <a class="btn" href="#contact">Get in Touch</a>
+        </div>
+        <div style="margin-top:10px">
+          <span class="chip">SLAM</span>
+          <span class="chip">EKF / Sensor Fusion</span>
+          <span class="chip">CTRA</span>
+          <span class="chip">SegFormer</span>
+          <span class="chip">YOLOv4</span>
+          <span class="chip">ROS 2</span>
+          <span class="chip">C++ • Python</span>
+        </div>
+      </div>
+      <div class="card">
+        <div style="font-weight:700; margin-bottom:8px">Featured: Dynamic Visual SLAM</div>
+        <p class="subtitle">SegFormer masks remove moving-object features → robust localization & mapping.</p>
+        <div class="grid">
+          <a class="btn" style="grid-column: span 6" href="https://youtu.be/rPasoh3TChU" target="_blank" rel="noreferrer">Static ORB-SLAM</a>
+          <a class="btn" style="grid-column: span 6" href="https://youtu.be/SpPrUodWPOo" target="_blank" rel="noreferrer">Dynamic ORB-SLAM</a>
+          <a class="btn" style="grid-column: span 12" href="https://youtu.be/uFI8JMBfABI" target="_blank" rel="noreferrer">Dynamic SLAM + SegFormer</a>
+          <a class="btn" style="grid-column: span 12" href="https://docs.google.com/presentation/d/1VzBqGeIcddwIwNuP9lUvNKDEmHPApW9bGFcjGzeV1ko/edit?usp=sharing" target="_blank" rel="noreferrer">Project Slides</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+      <p class="subtitle">A few things I've been building recently.</p>
+      <div class="projects">
+        <article class="project">
+          <img class="thumb" src="https://img.youtube.com/vi/uFI8JMBfABI/0.jpg" alt="Dynamic SLAM thumbnail"/>
+          <div class="p-body">
+            <h3>Dynamic Visual SLAM with SegFormer</h3>
+            <p>Integrates semantic segmentation into ORB-SLAM3 to ignore moving-object features, improving localization in dynamic indoor scenes.</p>
+            <p>
+              <span class="tag">SLAM</span>
+              <span class="tag">SegFormer</span>
+              <span class="tag">C++</span>
+              <span class="tag">ROS 2</span>
+            </p>
+            <p><a href="https://youtu.be/uFI8JMBfABI" target="_blank" rel="noreferrer">Demo Video</a> · <a href="https://github.com/your-username/dynamic-visual-slam" target="_blank" rel="noreferrer">Repo</a> · <a href="https://docs.google.com/presentation/d/1VzBqGeIcddwIwNuP9lUvNKDEmHPApW9bGFcjGzeV1ko/edit?usp=sharing" target="_blank" rel="noreferrer">Slides</a></p>
+          </div>
+        </article>
+        <article class="project">
+          <img class="thumb" src="https://dummyimage.com/800x450/10162a/9db0d8&text=CTRA+vs+CA+Fusion" alt="CTRA vs CA"/>
+          <div class="p-body">
+            <h3>CTRA Motion Model in EKF Sensor Fusion</h3>
+            <p>Implemented & benchmarked CTRA against CA in a ROS2-based fusion pipeline (ADAS). Derived Jacobians, tuned Q/R, and delivered robust tracking under turning motion.</p>
+            <p>
+              <span class="tag">EKF</span>
+              <span class="tag">CTRA</span>
+              <span class="tag">ROS 2</span>
+              <span class="tag">C++</span>
+            </p>
+            <p><a href="https://github.com/your-username/ctra-ekf-fusion" target="_blank" rel="noreferrer">Repo</a> · <a href="#" onclick="alert('Add a demo or blog link!')">Write-up</a></p>
+          </div>
+        </article>
+        <article class="project">
+          <img class="thumb" src="https://dummyimage.com/800x450/0d152b/cfe0ff&text=YOLOv4+Training" alt="YOLOv4"/>
+          <div class="p-body">
+            <h3>YOLOv4 Adversarial Training</h3>
+            <p>Custom PyTorch pipeline to load pre-trained weights into a tailored <code>YoloBody</code>; explored robustness via adversarial augmentation and label smoothing.</p>
+            <p>
+              <span class="tag">YOLOv4</span>
+              <span class="tag">PyTorch</span>
+              <span class="tag">Detection</span>
+            </p>
+            <p><a href="https://github.com/your-username/yolov4-adversarial-training" target="_blank" rel="noreferrer">Repo</a></p>
+          </div>
+        </article>
+        <article class="project">
+          <img class="thumb" src="https://dummyimage.com/800x450/162235/a4b1cd&text=IBVS+for+Turtlebot3" alt="IBVS Turtlebot"/>
+          <div class="p-body">
+            <h3>Image-Based Visual Servoing (IBVS) for Turtlebot3</h3>
+            <p>Implemented an IBVS pipeline in ROS2 for Turtlebot3, using camera feedback to directly control robot motion. Includes feature extraction, interaction matrix derivation, and closed-loop control.</p>
+            <p>
+              <span class="tag">IBVS</span>
+              <span class="tag">ROS 2</span>
+              <span class="tag">Control</span>
+              <span class="tag">C++/Python</span>
+            </p>
+            <p><a href="https://github.com/your-username/ibvs-turtlebot3" target="_blank" rel="noreferrer">Repo</a></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-role">Sensor Fusion Intern — Magna Electronics (ADAS)</div>
+          <div class="t-meta">Summer 2025 · Auburn Hills, MI</div>
+          <div>CTRA integration in ROS2 fusion stack; innovation covariance debugging; benchmarking vs CA; internal knowledge transfer session.</div>
+        </div>
+        <div class="t-item">
+          <div class="t-role">Graduate Research — UMN</div>
+          <div class="t-meta">2024–2026 (expected)</div>
+          <div>Hybrid ROS2 Navigation + Imitation Learning for an agricultural rover with a 3‑DOF arm; dynamic SLAM research and implementations.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="section-title">Contact</h2>
+      <p class="subtitle">Open to internships and full‑time roles in robotics/perception starting 2026.</p>
+      <div class="card">
+        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a> · LinkedIn: <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">/in/your-handle</a> · GitHub: <a href="https://github.com/your-username" target="_blank" rel="noreferrer">@your-username</a></p>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="y"></span> Manas · Built with semantic HTML & a dash of CSS. Dark‑theme friendly.
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
