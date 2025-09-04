@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Manas | Robotics & Perception</title>
+  <title>Manas | Robotics, Perception & Cognition Algorithms</title>
   <meta name="description" content="Robotics & perception portfolio: Visual SLAM, Sensor Fusion (CTRA), EKF, and deep learning projects." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,7 +77,7 @@
 </head>
 <body>
   <header class="nav container">
-    <div class="brand">Manas <span class="badge">Robotics & Perception</span></div>
+    <div class="brand">Manas <span class="badge">Robotics, Perception & Cognition Algorithms</span></div>
     <div class="links">
       <a class="btn" href="#projects">Projects</a>
       <a class="btn" href="#experience">Experience</a>
@@ -92,9 +92,9 @@
     <!-- Hero -->
     <section class="hero">
       <div>
-        <h1>Hi, I'm Manas — building reliable robot perception.</h1>
-        <p>MS Robotics @ UMN • Sensor Fusion Intern @ Magna (ADAS)
-        <br/> I work on Visual SLAM in dynamic environments, EKF-based tracking, CTRA motion models, and deep-learning-enhanced perception.</p>
+        <h1>Hi, I'm Manas — building reliable robot perception and cognition algorithms.</h1>
+        <p>MS Robotics @ UMN • Ex Perception Intern @ Magna (ADAS) • Ex Control Systems Engineer @ SEDEMAC Mechatronics
+        <br/> I work on Visual SLAM in dynamic environments, EKF-based multi-sensor tracking, CTRA motion models for robust vehicle prediction, and deep-learning-enhanced perception pipelines.</p>
         <div class="cta">
           <a class="btn" href="#projects">Explore Projects</a>
           <a class="btn" href="#contact">Get in Touch</a>
@@ -109,9 +109,7 @@
           <span class="chip">C++ • Python</span>
         </div>
       </div>
-      <div class="card">
-        <div style="font-weight:700; margin-bottom:8px">Featured: Dynamic Visual SLAM</div>
-        <p class="subtitle">SegFormer masks remove moving-object features → robust localization & mapping.</p>
+      <p class="subtitle">SegFormer masks remove moving-object features → robust localization & mapping.</p>
         <div class="grid">
           <a class="btn" style="grid-column: span 6" href="https://youtu.be/rPasoh3TChU" target="_blank" rel="noreferrer">Static ORB-SLAM</a>
           <a class="btn" style="grid-column: span 6" href="https://youtu.be/SpPrUodWPOo" target="_blank" rel="noreferrer">Dynamic ORB-SLAM</a>
@@ -137,11 +135,12 @@
               <span class="tag">C++</span>
               <span class="tag">ROS 2</span>
             </p>
-            <p><a href="https://youtu.be/uFI8JMBfABI" target="_blank" rel="noreferrer">Demo Video</a> · <a href="https://github.com/your-username/dynamic-visual-slam" target="_blank" rel="noreferrer">Repo</a> · <a href="https://docs.google.com/presentation/d/1VzBqGeIcddwIwNuP9lUvNKDEmHPApW9bGFcjGzeV1ko/edit?usp=sharing" target="_blank" rel="noreferrer">Slides</a></p>
+            <p><a href="https://youtu.be/SpPrUodWPOo" target="_blank" rel="noreferrer">Before SegFormer (Dynamic ORB-SLAM)</a> · <a href="https://youtu.be/uFI8JMBfABI" target="_blank" rel="noreferrer">After SegFormer (Dynamic SLAM + SegFormer)</a> · <a href="https://youtu.be/rPasoh3TChU" target="_blank" rel="noreferrer">Static ORB-SLAM</a> · <a href="https://github.com/your-username/dynamic-visual-slam" target="_blank" rel="noreferrer">Repo</a> · <a href="https://docs.google.com/presentation/d/1VzBqGeIcddwIwNuP9lUvNKDEmHPApW9bGFcjGzeV1ko/edit?usp=sharing" target="_blank" rel="noreferrer">Slides</a></p>
+<p class="subtitle">Without SegFormer, dynamic objects degrade tracking; with SegFormer masks, moving-object features are ignored → robust localization and mapping.</p>
           </div>
         </article>
         <article class="project">
-          <img class="thumb" src="https://dummyimage.com/800x450/10162a/9db0d8&text=CTRA+vs+CA+Fusion" alt="CTRA vs CA"/>
+          <img class="thumb" src="https://img.youtube.com/vi/2EUyFGxl5i8/0.jpg" alt="CTRA vs CA"/>
           <div class="p-body">
             <h3>CTRA Motion Model in EKF Sensor Fusion</h3>
             <p>Implemented & benchmarked CTRA against CA in a ROS2-based fusion pipeline (ADAS). Derived Jacobians, tuned Q/R, and delivered robust tracking under turning motion.</p>
@@ -151,7 +150,8 @@
               <span class="tag">ROS 2</span>
               <span class="tag">C++</span>
             </p>
-            <p><a href="https://github.com/your-username/ctra-ekf-fusion" target="_blank" rel="noreferrer">Repo</a> · <a href="#" onclick="alert('Add a demo or blog link!')">Write-up</a></p>
+            <p><a href="https://youtube.com/shorts/ppGeLjBqUFg" target="_blank" rel="noreferrer">CTRA Demo</a> · <a href="https://youtube.com/shorts/vGe8iWsjSqc" target="_blank" rel="noreferrer">CA Demo</a> · <a href="https://youtu.be/2EUyFGxl5i8" target="_blank" rel="noreferrer">Scenario Video</a></p>
+<p class="subtitle">CA performance diverged under high-turning scenarios; CTRA remained stable. The scenario video shows the environment used to test both models.</p>
           </div>
         </article>
         <article class="project">
@@ -183,6 +183,31 @@
         </article>
       </div>
     </section>
+
+
+    <!-- Skills -->
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Robotics & Perception</h3>
+          <p>Visual SLAM (ORB-SLAM3), EKF / Sensor Fusion, CTRA / CA Motion Models, Dynamic Object Tracking, IBVS.</p>
+        </div>
+        <div class="card">
+          <h3>Deep Learning & Vision</h3>
+          <p>SegFormer, YOLOv4, Adversarial Training, PyTorch, Semantic Segmentation, Object Detection.</p>
+        </div>
+        <div class="card">
+          <h3>Software & Tools</h3>
+          <p>ROS 2, C++, Python, Git, Docker, Linux, MATLAB/Simulink.</p>
+        </div>
+        <div class="card">
+          <h3>Controls & Systems</h3>
+          <p>Control System Design, Embedded Mechatronics, Motor Control, Sensor Integration.</p>
+        </div>
+      </div>
+    </section>
+
 
     <!-- Experience -->
     <section id="experience">
