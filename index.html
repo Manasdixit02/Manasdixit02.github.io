@@ -3,245 +3,375 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Manas | Robotics, Perception & Cognition Algorithms</title>
-  <meta name="description" content="Robotics & perception portfolio: Visual SLAM, Sensor Fusion (CTRA), EKF, and deep learning projects." />
+  <title>Manas | Robotics Perception, Cognition & Controls Algorithms</title>
+  <meta name="description" content="Portfolio of Manas Dixit — robotics, state estimation, SLAM, Controls and perception projects." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #0b0f19;
-      --panel: #0f1424;
-      --muted: #a4b1cd;
-      --text: #e8eefc;
-      --accent: #7aa2ff;
-      --accent-2: #2dd4bf;
-      --card: #141b2f;
-      --border: #1f2842;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --radius: 18px;
-    }
-    * { box-sizing: border-box }
-    html, body { height: 100% }
-    body {
-      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--text); background: radial-gradient(1200px 700px at 70% -10%, rgba(122,162,255,.18), transparent 60%), var(--bg);
-      line-height: 1.6;
-    }
-    a { color: var(--accent); text-decoration: none }
-    a:hover { text-decoration: underline }
-    .container { max-width: 1080px; margin: 0 auto; padding: 32px 20px 80px }
+    :root{ --bg:#f5f7fb; --card:#ffffff; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; --brand:#2563eb; --brand2:#14b8a6; --radius:14px; --shadow:0 6px 18px rgba(2,6,23,.08); }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1080px;margin:0 auto;padding:0 20px}
 
-    /* Header */
-    .nav { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 0; position: sticky; top:0; backdrop-filter: blur(8px); background: rgba(11,15,25,.55); border-bottom: 1px solid var(--border); z-index: 20; }
-    .brand { display:flex; align-items:center; gap:10px; font-weight: 800; letter-spacing: .3px }
-    .badge { font-size:12px; color: var(--muted); border:1px solid var(--border); padding:4px 8px; border-radius: 999px }
-    .links { display:flex; gap:14px; flex-wrap:wrap }
-    .btn { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border); background: linear-gradient(180deg, #101730, #0b1124); color: var(--text); padding:10px 14px; border-radius: 999px; box-shadow: var(--shadow); }
-    .btn:hover { transform: translateY(-1px); box-shadow: 0 14px 36px rgba(0,0,0,.5) }
+    /* NAV */
+    .nav{position:sticky;top:0;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:50}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{font-weight:800;letter-spacing:.2px}
+    .nav-links{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:8px 12px;border-radius:999px;box-shadow:var(--shadow);cursor:pointer}
+    .btn:hover{background:#eef2ff}
 
-    /* Hero */
-    .hero { display:grid; grid-template-columns: 1.2fr .8fr; gap:28px; align-items:center; padding: 42px 0 10px }
-    .hero h1 { font-size: clamp(32px, 4.5vw, 54px); line-height:1.1; margin:0 0 14px }
-    .hero p { color: var(--muted); margin: 10px 0 18px }
-    .hero .cta { display:flex; gap:12px; flex-wrap:wrap }
-    .card { background: linear-gradient(180deg, #0f1426, #0b0f1b); border:1px solid var(--border); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow) }
-    .chip { display:inline-flex; align-items:center; gap:8px; color:#cfe0ff; background:#0f1a36; border:1px solid #1f2a4d; padding:8px 10px; border-radius:999px; font-size:12px; margin:4px 6px 0 0 }
-    .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap:18px }
+    /* HERO */
+    .hero{padding:56px 0}
+    .hero h1{font-size:clamp(34px,5vw,60px);line-height:1.1;margin:0 0 10px}
+    .hero p{color:var(--muted);margin:8px 0 18px}
+    .chips{margin-top:20px}
+    .chip-group{margin-bottom:20px}
+    .chip-group h3{margin:0 0 8px;font-size:16px;font-weight:600;color:var(--ink)}
+    .chip-list{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{font-size:12px;color:#0f172a;background:#e0e7ff;border:1px solid #c7d2fe;padding:6px 9px;border-radius:999px}
 
-    /* Section */
-    section { margin: 44px 0 }
-    .section-title { font-size: 22px; margin-bottom: 14px }
-    .subtitle { color: var(--muted); margin-top: -4px; font-size: 14px }
+    /* SECTIONS */
+    section{padding:36px 0}
+    .title{font-size:26px;margin:0 0 10px}
+    .subtitle{color:var(--muted);margin:-2px 0 18px}
 
-    /* Projects */
-    .projects { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:18px }
-    .project { background: var(--card); border:1px solid var(--border); border-radius: var(--radius); overflow:hidden; transform: translateZ(0); }
-    .project .thumb { aspect-ratio:16/9; background:#0c1326; display:block; width:100%; object-fit:cover; border-bottom:1px solid var(--border) }
-    .project .p-body { padding:14px 14px 16px }
-    .tag { font-size:12px; color:#9db0d8; background:#0f1a36; border:1px solid #1f2a4d; padding:4px 8px; border-radius:999px; margin-right:6px }
+    /* PROJECTS GRID */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .thumb{width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--line)}
+    .card-body{padding:14px 14px 18px}
+    .tags{margin-top:6px}
+    .tag{font-size:12px;color:#334155;background:#f1f5f9;border:1px solid #e2e8f0;padding:4px 8px;border-radius:999px;margin-right:6px}
+    .row-end{display:flex;justify-content:flex-end;margin-top:12px}
 
-    /* Timeline */
-    .timeline { border-left:2px solid var(--border); margin-left: 10px; padding-left: 16px }
-    .t-item { margin: 14px 0 }
-    .t-role { font-weight: 700 }
-    .t-meta { color: var(--muted); font-size: 14px }
+    /* DETAIL PAGE */
+    main.hidden{display:none}
+    .detail-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin:6px 0 18px}
+    .crumbs{color:var(--muted)}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+    .vid{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+    .vid iframe{width:100%;aspect-ratio:16/9;border:0;display:block}
+    .caption{padding:10px 12px;font-size:14px;color:var(--muted);border-top:1px solid var(--line)}
 
-    /* Footer */
-    footer { margin-top: 44px; padding-top: 20px; border-top:1px solid var(--border); color: var(--muted) }
+    /* ABOUT & CONTACT */
+    .about{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    @media (max-width:900px){.about{grid-template-columns:1fr}}
+    footer{border-top:1px solid var(--line);color:var(--muted);padding:16px 0;margin-top:32px}
 
-    @media (max-width: 860px){
-      .hero { grid-template-columns: 1fr; }
-    }
+    /* SKILLS */
+    .skills-logos{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px}
+    .tool{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
+    .tool img{width:22px;height:22px}
+    .tool span{font-size:14px}
+    .pill{display:inline-flex;align-items:center;border:1px dashed var(--line);padding:8px 10px;border-radius:999px;color:var(--muted)}
   </style>
 </head>
 <body>
-  <header class="nav container">
-    <div class="brand">Manas <span class="badge">Robotics, Perception & Cognition Algorithms</span></div>
-    <div class="links">
-      <a class="btn" href="#projects">Projects</a>
-      <a class="btn" href="#experience">Experience</a>
-      <a class="btn" href="#contact">Contact</a>
-      <a class="btn" href="https://github.com/your-username" target="_blank" rel="noreferrer">GitHub</a>
-      <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
-      <a class="btn" href="resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Manas | Robotics Perception, Cognition & Controls Algorithms</div>
+      <div class="nav-links">
+        <a class="btn" href="#about">About</a>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#skills">Skills</a>
+        <a class="btn" href="#contact">Contact</a>
+        <a class="btn" href="resume.pdf" target="_blank" rel="noreferrer">Resume</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main class="container">
-    <!-- Hero -->
+  <main id="home" class="container">
     <section class="hero">
-      <div>
-        <h1>Hi, I'm Manas — building reliable robot perception and cognition algorithms.</h1>
-        <p>MS Robotics @ UMN • Ex Perception Intern @ Magna (ADAS) • Ex Control Systems Engineer @ SEDEMAC Mechatronics
-        <br/> I work on Visual SLAM in dynamic environments, EKF-based multi-sensor tracking, CTRA motion models for robust vehicle prediction, and deep-learning-enhanced perception pipelines.</p>
-        <div class="cta">
-          <a class="btn" href="#projects">Explore Projects</a>
-          <a class="btn" href="#contact">Get in Touch</a>
+      <h1>Hi, I'm Manas — building reliable robot perception, cognition and control algorithms.</h1>
+      <p>MS Robotics @ UMN · Algorithms Development Intern @ Magna (ADAS) · ex-SEDEMAC Controls. Building end-to-end robotics software: SLAM in dynamic scenes, EKF/UKF pipelines, RL-tuned control, and ROS 2/C++/Python tooling for embedded and autonomous systems.</p>
+
+      <div class="chips">
+        <div class="chip-group">
+          <h3>Estimation & Controls</h3>
+          <div class="chip-list">
+            <span class="chip">EKF / UKF</span>
+            <span class="chip">Bayesian Filtering</span>
+            <span class="chip">PID / Optimal Control</span>
+            <span class="chip">Sensor Fusion</span>
+          </div>
         </div>
-        <div style="margin-top:10px">
-          <span class="chip">SLAM</span>
-          <span class="chip">EKF / Sensor Fusion</span>
-          <span class="chip">CTRA</span>
-          <span class="chip">SegFormer</span>
-          <span class="chip">YOLOv4</span>
-          <span class="chip">ROS 2</span>
-          <span class="chip">C++ • Python</span>
+
+        <div class="chip-group">
+          <h3>Perception & AI</h3>
+          <div class="chip-list">
+            <span class="chip">Visual SLAM</span>
+            <span class="chip">YOLOv8</span>
+            <span class="chip">SegFormer</span>
+            <span class="chip">3D Scene Reconstruction</span>
+          </div>
+        </div>
+
+        <div class="chip-group">
+          <h3>Robotics Software</h3>
+          <div class="chip-list">
+            <span class="chip">ROS 2</span>
+            <span class="chip">Gazebo • RViz</span>
+            <span class="chip">Inverse Kinematics</span>
+            <span class="chip">Teleoperation</span>
+          </div>
+        </div>
+
+        <div class="chip-group">
+          <h3>Programming & Tools</h3>
+          <div class="chip-list">
+            <span class="chip">C++ • Python</span>
+            <span class="chip">PyTorch • TensorFlow</span>
+            <span class="chip">Docker • WSL2</span>
+            <span class="chip">Git • JIRA</span>
+          </div>
+        </div>
+
+        <div class="chip-group">
+          <h3>Hardware & Sensors</h3>
+          <div class="chip-list">
+            <span class="chip">Radar • Camera • LiDAR</span>
+            <span class="chip">IMU • Wheel Encoders</span>
+            <span class="chip">Kinova Gen3</span>
+            <span class="chip">TurtleBot3</span>
+          </div>
         </div>
       </div>
-      <p class="subtitle">SegFormer masks remove moving-object features → robust localization & mapping.</p>
-        <div class="grid">
-          <a class="btn" style="grid-column: span 6" href="https://youtu.be/rPasoh3TChU" target="_blank" rel="noreferrer">Static ORB-SLAM</a>
-          <a class="btn" style="grid-column: span 6" href="https://youtu.be/SpPrUodWPOo" target="_blank" rel="noreferrer">Dynamic ORB-SLAM</a>
-          <a class="btn" style="grid-column: span 12" href="https://youtu.be/uFI8JMBfABI" target="_blank" rel="noreferrer">Dynamic SLAM + SegFormer</a>
-          <a class="btn" style="grid-column: span 12" href="https://docs.google.com/presentation/d/1VzBqGeIcddwIwNuP9lUvNKDEmHPApW9bGFcjGzeV1ko/edit?usp=sharing" target="_blank" rel="noreferrer">Project Slides</a>
+
+    </section>
+
+    <!-- ABOUT before projects -->
+    <section id="about">
+      <h2 class="title">About</h2>
+      <div class="about">
+        <div>
+          <p>I’m a Robotics MS student working across estimation, perception, and control. Projects span CTRA/CA-based EKF pipelines (Magna ADAS), dynamic visual SLAM with semantic filtering, and ROS 2 navigation + IK for an agricultural rover with a 3-DOF arm.</p>
+          <p>I enjoy building robotics systems end-to-end, transforming concepts and simulations into reliable pipelines validated in real-world environments.</p>
+        </div>
+        <div>
+          <div class="chips"><span class="chip">Open to 2026 roles</span><span class="chip">US-based</span></div>
         </div>
       </div>
     </section>
 
-    <!-- Projects -->
+    <!-- PROJECTS -->
     <section id="projects">
-      <h2 class="section-title">Projects</h2>
-      <p class="subtitle">A few things I've been building recently.</p>
-      <div class="projects">
-        <article class="project">
-          <img class="thumb" src="https://img.youtube.com/vi/uFI8JMBfABI/0.jpg" alt="Dynamic SLAM thumbnail"/>
-          <div class="p-body">
-            <h3>Dynamic Visual SLAM with SegFormer</h3>
-            <p>Integrates semantic segmentation into ORB-SLAM3 to ignore moving-object features, improving localization in dynamic indoor scenes.</p>
-            <p>
-              <span class="tag">SLAM</span>
-              <span class="tag">SegFormer</span>
-              <span class="tag">C++</span>
-              <span class="tag">ROS 2</span>
-            </p>
-            <p><a href="https://youtu.be/SpPrUodWPOo" target="_blank" rel="noreferrer">Before SegFormer (Dynamic ORB-SLAM)</a> · <a href="https://youtu.be/uFI8JMBfABI" target="_blank" rel="noreferrer">After SegFormer (Dynamic SLAM + SegFormer)</a> · <a href="https://youtu.be/rPasoh3TChU" target="_blank" rel="noreferrer">Static ORB-SLAM</a> · <a href="https://github.com/your-username/dynamic-visual-slam" target="_blank" rel="noreferrer">Repo</a> · <a href="https://docs.google.com/presentation/d/1VzBqGeIcddwIwNuP9lUvNKDEmHPApW9bGFcjGzeV1ko/edit?usp=sharing" target="_blank" rel="noreferrer">Slides</a></p>
-<p class="subtitle">Without SegFormer, dynamic objects degrade tracking; with SegFormer masks, moving-object features are ignored → robust localization and mapping.</p>
-          </div>
-        </article>
-        <article class="project">
-          <img class="thumb" src="https://img.youtube.com/vi/2EUyFGxl5i8/0.jpg" alt="CTRA vs CA"/>
-          <div class="p-body">
-            <h3>CTRA Motion Model in EKF Sensor Fusion</h3>
-            <p>Implemented & benchmarked CTRA against CA in a ROS2-based fusion pipeline (ADAS). Derived Jacobians, tuned Q/R, and delivered robust tracking under turning motion.</p>
-            <p>
-              <span class="tag">EKF</span>
-              <span class="tag">CTRA</span>
-              <span class="tag">ROS 2</span>
-              <span class="tag">C++</span>
-            </p>
-            <p><a href="https://youtube.com/shorts/ppGeLjBqUFg" target="_blank" rel="noreferrer">CTRA Demo</a> · <a href="https://youtube.com/shorts/vGe8iWsjSqc" target="_blank" rel="noreferrer">CA Demo</a> · <a href="https://youtu.be/2EUyFGxl5i8" target="_blank" rel="noreferrer">Scenario Video</a></p>
-<p class="subtitle">CA performance diverged under high-turning scenarios; CTRA remained stable. The scenario video shows the environment used to test both models.</p>
-          </div>
-        </article>
-        <article class="project">
-          <img class="thumb" src="https://dummyimage.com/800x450/0d152b/cfe0ff&text=YOLOv4+Training" alt="YOLOv4"/>
-          <div class="p-body">
-            <h3>YOLOv4 Adversarial Training</h3>
-            <p>Custom PyTorch pipeline to load pre-trained weights into a tailored <code>YoloBody</code>; explored robustness via adversarial augmentation and label smoothing.</p>
-            <p>
-              <span class="tag">YOLOv4</span>
-              <span class="tag">PyTorch</span>
-              <span class="tag">Detection</span>
-            </p>
-            <p><a href="https://github.com/your-username/yolov4-adversarial-training" target="_blank" rel="noreferrer">Repo</a></p>
-          </div>
-        </article>
-        <article class="project">
-          <img class="thumb" src="https://dummyimage.com/800x450/162235/a4b1cd&text=IBVS+for+Turtlebot3" alt="IBVS Turtlebot"/>
-          <div class="p-body">
-            <h3>Image-Based Visual Servoing (IBVS) for Turtlebot3</h3>
-            <p>Implemented an IBVS pipeline in ROS2 for Turtlebot3, using camera feedback to directly control robot motion. Includes feature extraction, interaction matrix derivation, and closed-loop control.</p>
-            <p>
-              <span class="tag">IBVS</span>
-              <span class="tag">ROS 2</span>
-              <span class="tag">Control</span>
-              <span class="tag">C++/Python</span>
-            </p>
-            <p><a href="https://github.com/your-username/ibvs-turtlebot3" target="_blank" rel="noreferrer">Repo</a></p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-
-    <!-- Skills -->
-    <section id="skills">
-      <h2 class="section-title">Skills</h2>
+      <h2 class="title">Projects</h2>
       <div class="grid">
-        <div class="card">
-          <h3>Robotics & Perception</h3>
-          <p>Visual SLAM (ORB-SLAM3), EKF / Sensor Fusion, CTRA / CA Motion Models, Dynamic Object Tracking, IBVS.</p>
-        </div>
-        <div class="card">
-          <h3>Deep Learning & Vision</h3>
-          <p>SegFormer, YOLOv4, Adversarial Training, PyTorch, Semantic Segmentation, Object Detection.</p>
-        </div>
-        <div class="card">
-          <h3>Software & Tools</h3>
-          <p>ROS 2, C++, Python, Git, Docker, Linux, MATLAB/Simulink.</p>
-        </div>
-        <div class="card">
-          <h3>Controls & Systems</h3>
-          <p>Control System Design, Embedded Mechatronics, Motor Control, Sensor Integration.</p>
-        </div>
+        <article class="card">
+          <img class="thumb" src="https://img.youtube.com/vi/uFI8JMBfABI/0.jpg" alt="Dynamic SLAM"/>
+          <div class="card-body">
+            <h3>Dynamic Visual SLAM with SegFormer</h3>
+            <p>ORB‑SLAM3 + SegFormer masks for robust tracking in dynamic environments.</p>
+            <div class="tags"><span class="tag">VIO/SLAM</span><span class="tag">SegFormer</span><span class="tag">C++</span></div>
+            <div class="row-end"><button class="btn details" data-project="dynamic-slam">→ details</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img class="thumb" src="https://img.youtube.com/vi/2EUyFGxl5i8/0.jpg" alt="CTRA vs CA"/>
+          <div class="card-body">
+            <h3>CTRA Motion Model in EKF Sensor Fusion</h3>
+            <p>Sharper maneuver handling than CA; tuned Q/R and Jacobians in a ROS 2 fusion pipeline.</p>
+            <div class="tags"><span class="tag">EKF</span><span class="tag">CTRA</span><span class="tag">ROS 2</span></div>
+            <div class="row-end"><button class="btn details" data-project="ctra-ekf">→ details</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img class="thumb" src="https://dummyimage.com/800x450/162235/a4b1cd&text=IBVS+for+TurtleBot3" alt="IBVS"/>
+          <div class="card-body">
+            <h3>IBVS for TurtleBot3</h3>
+            <p>Image‑space control loop with interaction matrix and closed‑loop regulation.</p>
+            <div class="tags"><span class="tag">Control</span><span class="tag">ROS 2</span></div>
+            <div class="row-end"><button class="btn details" data-project="ibvs-tb3">→ details</button></div>
+          </div>
+        </article>
+        <article class="card">
+          <img class="thumb" src="https://dummyimage.com/800x450/0d152b/cfe0ff&text=YOLOv4+Training" alt="YOLOv4"/>
+          <div class="card-body">
+            <h3>YOLOv4 Adversarial Training</h3>
+            <p>Custom PyTorch pipeline for robust detection via adversarial augmentation.</p>
+            <div class="tags"><span class="tag">PyTorch</span><span class="tag">Detection</span></div>
+            <div class="row-end"><button class="btn details" data-project="yolov4-adv">→ details</button></div>
+          </div>
+        </article>
       </div>
     </section>
 
-
-    <!-- Experience -->
-    <section id="experience">
-      <h2 class="section-title">Experience</h2>
-      <div class="timeline">
-        <div class="t-item">
-          <div class="t-role">Sensor Fusion Intern — Magna Electronics (ADAS)</div>
-          <div class="t-meta">Summer 2025 · Auburn Hills, MI</div>
-          <div>CTRA integration in ROS2 fusion stack; innovation covariance debugging; benchmarking vs CA; internal knowledge transfer session.</div>
-        </div>
-        <div class="t-item">
-          <div class="t-role">Graduate Research — UMN</div>
-          <div class="t-meta">2024–2026 (expected)</div>
-          <div>Hybrid ROS2 Navigation + Imitation Learning for an agricultural rover with a 3‑DOF arm; dynamic SLAM research and implementations.</div>
-        </div>
-      </div>
+    <!-- SKILLS (tools/software only, with logos) -->
+    <section id="skills">
+      <h2 class="title">Skills — Tools & Software</h2>
+      <div class="skills-logos" id="skillsGrid"></div>
     </section>
 
-    <!-- Contact -->
+    <!-- CONTACT -->
     <section id="contact">
-      <h2 class="section-title">Contact</h2>
-      <p class="subtitle">Open to internships and full‑time roles in robotics/perception starting 2026.</p>
-      <div class="card">
-        <p>Email: <a href="mailto:your.email@example.com">your.email@example.com</a> · LinkedIn: <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">/in/your-handle</a> · GitHub: <a href="https://github.com/your-username" target="_blank" rel="noreferrer">@your-username</a></p>
+      <h2 class="title">Contact</h2>
+      <div class="card" style="padding:16px">
+        <p>Email: <a href="mailto:manasdixit13@gmail.com">manasdixit13@gmail.com</a> · LinkedIn: <a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/manas2/">/in/manas2</a> · GitHub: <a target="_blank" rel="noreferrer" href="https://github.com/Manasdixit02">@Manasdixit02</a></p>
       </div>
     </section>
 
-    <footer>
-      © <span id="y"></span> Manas · Built with semantic HTML & a dash of CSS. Dark‑theme friendly.
-    </footer>
+    <footer>© <span id="year"></span> Manas Dixit</footer>
+  </main>
+
+  <!-- DETAIL (Project page) -->
+  <main id="detail" class="container hidden">
+    <section class="detail-head">
+      <div>
+        <div class="crumbs"><a href="/" id="backLink">← Back to Projects</a></div>
+        <h1 id="d-title" style="margin:8px 0 0"></h1>
+        <p id="d-desc" class="subtitle" style="margin:6px 0 0"></p>
+      </div>
+      <div id="d-links"></div>
+    </section>
+    <section>
+      <div class="gallery" id="d-gallery"></div>
+    </section>
+    <footer>© <span id="year2"></span> Manas Dixit</footer>
   </main>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+    // Years
+    const y = new Date().getFullYear();
+    document.getElementById('year').textContent = y;
+    document.getElementById('year2').textContent = y;
+
+    // Project data
+    const PROJECTS = {
+      'dynamic-slam': {
+        title:'Dynamic Visual SLAM with SegFormer',
+        desc:'SegFormer masks filter moving-object features to stabilize ORB‑SLAM3 in dynamic scenes.',
+        videos:[
+          {id:'SpPrUodWPOo',caption:'Baseline: dynamic ORB‑SLAM (no masking)'},
+          {id:'uFI8JMBfABI',caption:'With SegFormer: masked keypoints → stable tracking'},
+          {id:'rPasoh3TChU',caption:'Static reference run for comparison'}
+        ],
+        links:[{href:'https://github.com/Manasdixit02/Dynamic_visual_SLAM',label:'Repository'},{href:'https://docs.google.com/presentation/d/1VzBqGeIcddwIwNuP9lUvNKDEmHPApW9bGFcjGzeV1ko/edit?usp=sharing',label:'Slides'}]
+      },
+      'ctra-ekf': {
+        title:'CTRA Motion Model in EKF Sensor Fusion',
+        desc:'CTRA improves estimation under high‑turn maneuvers vs CA in a ROS 2 sensor‑fusion pipeline.',
+        videos:[
+          {id:'ppGeLjBqUFg',caption:'CTRA demo: tight turn tracking'},
+          {id:'vGe8iWsjSqc',caption:'CA demo: comparison run'},
+          {id:'2EUyFGxl5i8',caption:'Scenario overview'}
+        ],
+        links:[]
+      },
+      'ibvs-tb3': {
+        title:'IBVS for TurtleBot3',
+        desc:'Image‑space control loop with interaction matrix; closed‑loop regulation in ROS 2.',
+        videos:[],
+        links:[{href:'https://github.com/Manasdixit02/IBVS_for_turtlebot3',label:'Repository'}]
+      },
+      'yolov4-adv': {
+        title:'YOLOv4 Adversarial Training',
+        desc:'Custom PyTorch pipeline; adversarial augmentation and label smoothing for robustness.',
+        videos:[],
+        links:[{href:'#',label:'Repository'}]
+      }
+    };
+
+    // Router helpers
+    function showHome(){
+      document.getElementById('detail').classList.add('hidden');
+      document.getElementById('home').classList.remove('hidden');
+    }
+    function showDetail(id){
+      const data = PROJECTS[id];
+      if(!data){ showHome(); return; }
+      document.getElementById('home').classList.add('hidden');
+      document.getElementById('detail').classList.remove('hidden');
+      document.getElementById('d-title').textContent = data.title;
+      document.getElementById('d-desc').textContent = data.desc || '';
+      const linksDiv = document.getElementById('d-links');
+      linksDiv.innerHTML = '';
+      if(data.links && data.links.length){
+        data.links.forEach(l=>{
+          const a=document.createElement('a'); a.className='btn'; a.href=l.href; a.target='_blank'; a.rel='noreferrer'; a.textContent=l.label; linksDiv.appendChild(a);
+        });
+      }
+      const g = document.getElementById('d-gallery');
+      g.innerHTML = '';
+      if(data.videos && data.videos.length){
+        data.videos.forEach(v=>{
+          const card=document.createElement('div'); card.className='vid';
+          card.innerHTML = `
+            <iframe src="https://www.youtube.com/embed/${v.id}" title="YouTube video" allowfullscreen loading="lazy"></iframe>
+            <div class="caption">${v.caption||''}</div>
+          `;
+          g.appendChild(card);
+        });
+      } else {
+        const p=document.createElement('p'); p.className='subtitle'; p.textContent='No videos yet. Check the repository above for details.'; g.appendChild(p);
+      }
+      document.getElementById('backLink').href = location.pathname + '#projects';
+    }
+
+    // Wire up details buttons
+    document.querySelectorAll('.details').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const id = btn.getAttribute('data-project');
+        history.pushState({project:id}, '', `?project=${id}`);
+        showDetail(id);
+      });
+    });
+
+    // Initial route
+    const qs = new URLSearchParams(location.search);
+    const projectId = qs.get('project');
+    if(projectId){ showDetail(projectId); } else { showHome(); }
+
+    // popstate
+    window.addEventListener('popstate', ()=>{
+      const id=(new URLSearchParams(location.search)).get('project');
+      if(id) showDetail(id); else showHome();
+    });
+
+    // Skills: tools/software only (from resume)
+    const tools = [
+      {name:'ROS 2', slug:'ros'},
+      {name:'ROS 1', slug:'ros'},
+      {name:'RViz', slug:''},
+      {name:'Gazebo', slug:'gazebo'},
+      {name:'Docker', slug:'docker'},
+      {name:'Git', slug:'git'},
+      {name:'Jira', slug:'jira'},
+      {name:'WSL2', slug:'windows'},
+      {name:'MATLAB', slug:'mathworks'},
+      {name:'Simulink', slug:'mathworks'},
+      {name:'OpenCV', slug:'opencv'},
+      {name:'PyTorch', slug:'pytorch'},
+      {name:'TensorFlow', slug:'tensorflow'},
+      {name:'LabVIEW', slug:'labview'},
+      {name:'CARLA', slug:''},
+      {name:'CUDA', slug:'nvidia'},
+      {name:'CANoe', slug:''},
+      {name:'CANalyzer', slug:''},
+      {name:'Vector', slug:''}
+    ];
+
+    const skillsGrid = document.getElementById('skillsGrid');
+    const icon = (slug)=> slug ? `https://cdn.simpleicons.org/${slug}` : '';
+
+    tools.forEach(t=>{
+      const el = document.createElement('div'); el.className='tool';
+      const iSrc = icon(t.slug);
+      if(iSrc){
+        const img = document.createElement('img'); img.src = iSrc; img.alt = `${t.name} logo`;
+        img.onerror = ()=>{ img.remove(); el.classList.add('pill'); el.textContent = t.name; };
+        el.appendChild(img);
+        const span = document.createElement('span'); span.textContent = t.name; el.appendChild(span);
+      } else {
+        el.className = 'pill'; el.textContent = t.name;
+      }
+      skillsGrid.appendChild(el);
+    });
   </script>
 </body>
 </html>
