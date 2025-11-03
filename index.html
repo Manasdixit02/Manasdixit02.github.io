@@ -271,13 +271,13 @@
           {id:'IyRRwgQm2kk',caption:'Occlusion stress test: standard IBVS loses the target when it’s partially hidden'},
           {id:'0eTwzXML35s',caption:'Occlusion‑robust IBVS: feature‑estimation integration restores stable tracking'}
         ],
-        links:[{href:'https://github.com/Manasdixit02/IBVS_for_turtlebot3',label:'Repository'}]
+        links:[{href:'https://github.com/Manasdixit02/IBVS_for_turtlebot3',label:'Repository'},{href:'https://docs.google.com/presentation/d/1BU-yxYh0wP_f9XoPwtZVcTX0MRy9yCk05-bUhChLVbc/edit?usp=sharing',label:'Slides'}]
       },
       'yolov4-adv': {
         title:'YOLOv4 Adversarial Training',
         desc:'Custom PyTorch pipeline; adversarial augmentation and label smoothing for robustness.',
         videos:[],
-        links:[{href:'#',label:'Repository'}]
+        links:[{href:'https://github.com/NVP12/Adversarial-Defense-Strategies-for-Object-Detection-In-Autonomous-Vehicle-Perception-Systems',label:'Repository'},{href:'DL_Final_Report.pdf',label:'Report'}]
       }
     };
 
@@ -311,8 +311,15 @@
           `;
           g.appendChild(card);
         });
-      } else {
-        const p=document.createElement('p'); p.className='subtitle'; p.textContent='No videos yet. Check the repository above for details.'; g.appendChild(p);
+      }
+      else {
+        if(id==='yolov4-adv'){
+          const card=document.createElement('div');
+          card.innerHTML = `<h3>ABSTRACT</h3><p>Convolutional Neural Networks (CNNs) have achieved state-of-the-art performance in a wide range of computer vision tasks, including image classification, object detection, and segmentation, owing to advances in training techniques and architectural innovations. However, their susceptibility to adversarial attacks raises serious concerns about their reliability, particularly in safety-critical applications such as autonomous driving. While adversarial training has emerged as a promising defense, its effectiveness is typically limited to the types of attacks seen during training. Moreover, conventional training pipelines terminate learning after convergence, lacking the adaptability to counter evolving adversarial threats encountered during real-world deployment. This project addresses these limitations in the context of object detection for autonomous vehicle perception systems, focusing on CNN-based detectors such as YOLOv4. We propose a self-supervised continual learning pipeline that enables the detector to adapt and improve during deployment by leveraging adversarial inputs in real time. Our input dataset consists of both clean and adversarial examples generated using Fast Gradient Sign Method (FGSM) and Projected Gradient Descent (PGD). We incorporate the MagNet detector to identify adversarial samples during inference, which are then used for training the target YOLOv4 via self-supervised learning mechanism. This mechanism allows the YOLOv4 model to incrementally enhance its robustness through continuous self-supervised updates. Through this adaptive training pipeline, we demonstrate improved resilience of YOLOv4 to adversarial perturbations, achieving a measurable increase in mean Average Precision (mAP) under FGSM and PGD attacks.</p>`;
+          g.appendChild(card);
+        } else {
+          const p=document.createElement('p'); p.className='subtitle'; p.textContent='No videos yet. Check the repository above for details.'; g.appendChild(p);
+        }
       }
       document.getElementById('backLink').href = location.pathname + '#projects';
     }
