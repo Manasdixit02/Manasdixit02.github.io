@@ -167,7 +167,7 @@
           <img class="thumb" src="https://img.youtube.com/vi/uFI8JMBfABI/0.jpg" alt="Dynamic SLAM"/>
           <div class="card-body">
             <h3>Dynamic Visual SLAM with SegFormer</h3>
-            <p>ORB‑SLAM3 + SegFormer masks for robust tracking in dynamic environments.</p>
+            <p>ORB-SLAM3 + SegFormer masks for robust tracking in dynamic environments.</p>
             <div class="tags"><span class="tag">VIO/SLAM</span><span class="tag">SegFormer</span><span class="tag">C++</span></div>
             <div class="row-end"><button class="btn details" data-project="dynamic-slam">→ details</button></div>
           </div>
@@ -176,8 +176,8 @@
           <img class="thumb" src="https://img.youtube.com/vi/2EUyFGxl5i8/0.jpg" alt="CTRA vs CA"/>
           <div class="card-body">
             <h3>CTRA Motion Model in EKF Sensor Fusion</h3>
-            <p>Sharper maneuver handling than CA; tuned Q/R and Jacobians in a ROS 2 fusion pipeline.</p>
-            <div class="tags"><span class="tag">EKF</span><span class="tag">CTRA</span><span class="tag">ROS 2</span></div>
+            <p>Sharper maneuver handling than CA; tuned Q/R and Jacobians in a ROS 2 fusion pipeline.</p>
+            <div class="tags"><span class="tag">EKF</span><span class="tag">CTRA</span><span class="tag">ROS 2</span></div>
             <div class="row-end"><button class="btn details" data-project="ctra-ekf">→ details</button></div>
           </div>
         </article>
@@ -185,8 +185,8 @@
           <img class="thumb" src="https://img.youtube.com/vi/02knEVV_Q8w/0.jpg" alt="IBVS"/>
           <div class="card-body">
             <h3>IBVS for TurtleBot3</h3>
-            <p>Image‑space control loop with interaction matrix and closed‑loop regulation.</p>
-            <div class="tags"><span class="tag">Control</span><span class="tag">ROS 2</span></div>
+            <p>Image-space control loop with interaction matrix and closed-loop regulation.</p>
+            <div class="tags"><span class="tag">Control</span><span class="tag">ROS 2</span></div>
             <div class="row-end"><button class="btn details" data-project="ibvs-tb3">→ details</button></div>
           </div>
         </article>
@@ -197,6 +197,16 @@
             <p>Custom PyTorch pipeline for robust detection via adversarial augmentation.</p>
             <div class="tags"><span class="tag">PyTorch</span><span class="tag">Detection</span></div>
             <div class="row-end"><button class="btn details" data-project="yolov4-adv">→ details</button></div>
+          </div>
+        </article>
+        <!-- New RL project card -->
+        <article class="card">
+          <img class="thumb" src="https://dummyimage.com/800x450/020617/e5e7eb&text=Kinova+Gen3+RL+Control" alt="Kinova Gen3 RL Control"/>
+          <div class="card-body">
+            <h3>RL Control Environment for Kinova Gen3 Lite</h3>
+            <p>Joint-space continuous control environment with curriculum and physics-grounded reward shaping.</p>
+            <div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">Kinova Gen3</span><span class="tag">PyBullet</span></div>
+            <div class="row-end"><button class="btn details" data-project="kinova-rl">→ details</button></div>
           </div>
         </article>
       </div>
@@ -245,17 +255,20 @@
     const PROJECTS = {
       'dynamic-slam': {
         title:'Dynamic Visual SLAM with SegFormer',
-        desc:'SegFormer masks filter moving-object features to stabilize ORB‑SLAM3 in dynamic scenes.',
+        desc:'SegFormer masks filter moving-object features to stabilize ORB-SLAM3 in dynamic scenes.',
         videos:[
-          {id:'SpPrUodWPOo',caption:'Baseline: dynamic ORB‑SLAM (no masking)'},
+          {id:'SpPrUodWPOo',caption:'Baseline: dynamic ORB-SLAM (no masking)'},
           {id:'uFI8JMBfABI',caption:'With SegFormer: masked keypoints → stable tracking'},
           {id:'rPasoh3TChU',caption:'Static reference run for comparison'}
         ],
-        links:[{href:'https://github.com/Manasdixit02/Dynamic_visual_SLAM',label:'Repository'},{href:'https://docs.google.com/presentation/d/1VzBqGeIcddwIwNuP9lUvNKDEmHPApW9bGFcjGzeV1ko/edit?usp=sharing',label:'Slides'}]
+        links:[
+          {href:'https://github.com/Manasdixit02/Dynamic_visual_SLAM',label:'Repository'},
+          {href:'https://docs.google.com/presentation/d/1VzBqGeIcddwIwNuP9lUvNKDEmHPApW9bGFcjGzeV1ko/edit?usp=sharing',label:'Slides'}
+        ]
       },
       'ctra-ekf': {
         title:'CTRA Motion Model in EKF Sensor Fusion',
-        desc:'CTRA improves estimation under high‑turn maneuvers vs CA in a ROS 2 sensor‑fusion pipeline.',
+        desc:'CTRA improves estimation under high-turn maneuvers vs CA in a ROS 2 sensor-fusion pipeline.',
         videos:[
           {id:'ppGeLjBqUFg',caption:'CTRA demo: tight turn tracking'},
           {id:'vGe8iWsjSqc',caption:'CA demo: comparison run'},
@@ -265,19 +278,34 @@
       },
       'ibvs-tb3': {
         title:'IBVS for TurtleBot3',
-        desc:'Image‑space control loop with interaction matrix; closed‑loop regulation in ROS 2.',
+        desc:'Image-space control loop with interaction matrix; closed-loop regulation in ROS 2.',
         videos:[
           {id:'02knEVV_Q8w',caption:'Normal conditions: IBVS tracks the target reliably on TurtleBot3'},
           {id:'IyRRwgQm2kk',caption:'Occlusion stress test: standard IBVS loses the target when it’s partially hidden'},
-          {id:'0eTwzXML35s',caption:'Occlusion‑robust IBVS: feature‑estimation integration restores stable tracking'}
+          {id:'0eTwzXML35s',caption:'Occlusion-robust IBVS: feature-estimation integration restores stable tracking'}
         ],
-        links:[{href:'https://github.com/Manasdixit02/IBVS_for_turtlebot3',label:'Repository'},{href:'https://docs.google.com/presentation/d/1BU-yxYh0wP_f9XoPwtZVcTX0MRy9yCk05-bUhChLVbc/edit?usp=sharing',label:'Slides'}]
+        links:[
+          {href:'https://github.com/Manasdixit02/IBVS_for_turtlebot3',label:'Repository'},
+          {href:'https://docs.google.com/presentation/d/1BU-yxYh0wP_f9XoPwtZVcTX0MRy9yCk05-bUhChLVbc/edit?usp=sharing',label:'Slides'}
+        ]
       },
       'yolov4-adv': {
         title:'YOLOv4 Adversarial Training',
         desc:'Custom PyTorch pipeline; adversarial augmentation and label smoothing for robustness.',
         videos:[],
-        links:[{href:'https://github.com/NVP12/Adversarial-Defense-Strategies-for-Object-Detection-In-Autonomous-Vehicle-Perception-Systems',label:'Repository'},{href:'DL_Final_Report.pdf',label:'Report'}]
+        links:[
+          {href:'https://github.com/NVP12/Adversarial-Defense-Strategies-for-Object-Detection-In-Autonomous-Vehicle-Perception-Systems',label:'Repository'},
+          {href:'DL_Final_Report.pdf',label:'Report'}
+        ]
+      },
+      'kinova-rl': {
+        title:'RL Control Environment for Kinova Gen3 Lite',
+        desc:'Redesigned joint-space RL environment for Kinova Gen3 Lite with curriculum and physics-grounded reward shaping.',
+        videos:[],
+        links:[
+          // You can update this link once the repo is public
+          {href:'https://github.com/Manasdixit02/RL-based-Controller-for-Robotic-Arm-Target-Reaching',label:'Repository'}
+        ]
       }
     };
 
@@ -297,7 +325,13 @@
       linksDiv.innerHTML = '';
       if(data.links && data.links.length){
         data.links.forEach(l=>{
-          const a=document.createElement('a'); a.className='btn'; a.href=l.href; a.target='_blank'; a.rel='noreferrer'; a.textContent=l.label; linksDiv.appendChild(a);
+          const a=document.createElement('a');
+          a.className='btn';
+          a.href=l.href;
+          a.target='_blank';
+          a.rel='noreferrer';
+          a.textContent=l.label;
+          linksDiv.appendChild(a);
         });
       }
       const g = document.getElementById('d-gallery');
@@ -317,8 +351,110 @@
           const card=document.createElement('div');
           card.innerHTML = `<h3>ABSTRACT</h3><p>Convolutional Neural Networks (CNNs) have achieved state-of-the-art performance in a wide range of computer vision tasks, including image classification, object detection, and segmentation, owing to advances in training techniques and architectural innovations. However, their susceptibility to adversarial attacks raises serious concerns about their reliability, particularly in safety-critical applications such as autonomous driving. While adversarial training has emerged as a promising defense, its effectiveness is typically limited to the types of attacks seen during training. Moreover, conventional training pipelines terminate learning after convergence, lacking the adaptability to counter evolving adversarial threats encountered during real-world deployment. This project addresses these limitations in the context of object detection for autonomous vehicle perception systems, focusing on CNN-based detectors such as YOLOv4. We propose a self-supervised continual learning pipeline that enables the detector to adapt and improve during deployment by leveraging adversarial inputs in real time. Our input dataset consists of both clean and adversarial examples generated using Fast Gradient Sign Method (FGSM) and Projected Gradient Descent (PGD). We incorporate the MagNet detector to identify adversarial samples during inference, which are then used for training the target YOLOv4 via self-supervised learning mechanism. This mechanism allows the YOLOv4 model to incrementally enhance its robustness through continuous self-supervised updates. Through this adaptive training pipeline, we demonstrate improved resilience of YOLOv4 to adversarial perturbations, achieving a measurable increase in mean Average Precision (mAP) under FGSM and PGD attacks.</p>`;
           g.appendChild(card);
+        } else if(id==='kinova-rl') {
+          const card=document.createElement('div');
+          card.className='vid';
+          card.innerHTML = `
+            <div class="caption" style="border-top:none">
+              <h3 style="margin-top:0">Project Summary</h3>
+
+              <h4>Objective</h4>
+              <p>Build a fully redesigned RL environment for the Kinova Gen3 Lite robotic arm in PyBullet, enabling true continuous-control learning instead of IK-driven motion.</p>
+
+              <h4>Reference Baseline</h4>
+              <p>The redesign is based on a critical analysis of the original UR5 environment: <a href="https://github.com/leesweqq/ur5_reinforcement_learning_grasp_object/blob/main/ur5_env.py" target="_blank" rel="noreferrer">UR5 RL Environment</a>.</p>
+
+              <h4>Problems With the Original UR5 Environment</h4>
+              <ul>
+                <li>Used inverse kinematics (IK) inside the control loop, so the agent did not actually learn robot motion — IK solved most of the task.</li>
+                <li>Provided non-Markovian observations (e.g., missing joint states, velocities, and end-effector pose).</li>
+                <li>Defined an action space that bypassed robot dynamics by directly commanding end-effector positions.</li>
+                <li>Rewards primarily reflected IK convergence rather than meaningful control behavior learned by the policy.</li>
+                <li>As a result, it was not suitable for genuine RL-based control learning.</li>
+              </ul>
+
+              <h4>Key Improvements in the Redesigned Environment</h4>
+              <h5>Joint-Space Continuous Control</h5>
+              <ul>
+                <li>The agent outputs 6D joint-angle increments (Δq) at each time step.</li>
+                <li>These increments are applied directly to the robot under joint limits.</li>
+                <li>There is no IK or motion planner inside the RL loop — only low-level position control.</li>
+              </ul>
+
+              <h5>18-Dimensional Markov Observation Space</h5>
+              <ul>
+                <li>Joint angles: 6</li>
+                <li>Joint velocities: 6</li>
+                <li>End-effector position: 3</li>
+                <li>Relative goal vector (goal − end-effector): 3</li>
+                <li>This provides full access to both robot dynamics and task geometry, making the environment Markovian.</li>
+              </ul>
+
+              <h4>Physics-Grounded Reward Function</h4>
+              <h5>Distance shaping</h5>
+              <ul>
+                <li>Separate penalties for far and near distances.</li>
+                <li>A deadband near the goal where distance penalties vanish.</li>
+              </ul>
+
+              <h5>Safety penalties</h5>
+              <ul>
+                <li>Collision penalties for self-collision or unsafe proximity.</li>
+                <li>Joint-limit proximity penalties to discourage configurations near limits.</li>
+              </ul>
+
+              <h5>Smoothness penalties</h5>
+              <ul>
+                <li>Penalize action magnitude ‖Δq‖².</li>
+                <li>Penalize action change ‖Δqₜ − Δqₜ₋₁‖² for jerk reduction.</li>
+              </ul>
+
+              <h5>Success incentives</h5>
+              <ul>
+                <li>A success bonus when the end-effector enters a small threshold around the goal.</li>
+                <li>A time-based bonus encouraging faster convergence.</li>
+              </ul>
+
+              <p>Together, these components promote accurate, stable, smooth, and safe multi-joint motion.</p>
+
+              <h4>Curriculum Learning Framework</h4>
+              <ul>
+                <li>Uses a five-stage curriculum to gradually increase difficulty:
+                  <ul>
+                    <li>Easy, near-center goals.</li>
+                    <li>Stages 2–4: expanding coverage over different regions of the workspace.</li>
+                    <li>Fully random goals across the reachable workspace.</li>
+                  </ul>
+                </li>
+                <li>Curriculum progression is controlled via episode thresholds such as [50, 100, 150, 200].</li>
+                <li>This improves training stability, sample efficiency, and final performance.</li>
+              </ul>
+
+              <h4>Outcome</h4>
+              <ul>
+                <li>The redesigned Kinova Gen3 Lite environment enables true continuous-control RL, where the agent:
+                  <ul>
+                    <li>Learns coordinated multi-joint motion under realistic dynamics and constraints.</li>
+                    <li>No longer relies on IK shortcuts to solve the task.</li>
+                  </ul>
+                </li>
+                <li>It serves as a research-grade benchmark for:
+                  <ul>
+                    <li>Robotic reaching,</li>
+                    <li>Future grasping and manipulation tasks,</li>
+                    <li>Multi-modal (e.g., vision + proprioception) policy learning,</li>
+                    <li>And sim-to-real transfer studies.</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          `;
+          g.appendChild(card);
         } else {
-          const p=document.createElement('p'); p.className='subtitle'; p.textContent='No videos yet. Check the repository above for details.'; g.appendChild(p);
+          const p=document.createElement('p');
+          p.className='subtitle';
+          p.textContent='No videos yet. Check the repository above for details.';
+          g.appendChild(p);
         }
       }
       document.getElementById('backLink').href = location.pathname + '#projects';
@@ -346,7 +482,7 @@
 
     // Skills: tools/software only (from resume)
     const tools = [
-      {name:'ROS 2', slug:'ros'},
+      {name:'ROS 2', slug:'ros'},
       {name:'ROS 1', slug:'ros'},
       {name:'RViz', slug:''},
       {name:'Gazebo', slug:'gazebo'},
