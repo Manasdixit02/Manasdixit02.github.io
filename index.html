@@ -50,6 +50,25 @@
     .tag{font-size:12px;color:#334155;background:#f1f5f9;border:1px solid #e2e8f0;padding:4px 8px;border-radius:999px;margin-right:6px}
     .row-end{display:flex;justify-content:flex-end;margin-top:12px}
 
+    /* FIX 1: Make ONLY selected cards narrower */
+    .card.narrow{max-width:380px}
+
+    /* FIX 2: Make thumbnail naturally shorter (scales with width, no weird cropping) */
+    .thumb.sm{aspect-ratio:16/8}
+
+    /* FIX 3: Description font size matches subheading size */
+    .card-body p{margin:8px 0 18px;font-size:15px;line-height:1.5;color:var(--muted)}
+    .card-body h3{font-size:18px;line-height:1.25;font-weight:600;margin:0 0 6px;}
+
+    /* PROJECT CATEGORY HEADERS */
+    .proj-block{margin-top:18px}
+    .proj-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:22px 0 10px}
+    .proj-h h3{margin:0;font-size:18px}
+    .proj-h p{margin:0;color:var(--muted);font-size:14px}
+    .proj-sub{margin:14px 0 10px}
+    .proj-sub h4{margin:0 0 10px;font-size:15px;color:var(--ink);font-weight:650}
+    .divider{height:1px;background:var(--line);margin:18px 0}
+
     /* DETAIL PAGE */
     main.hidden{display:none}
     .detail-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin:6px 0 18px}
@@ -80,6 +99,7 @@
         <a class="btn" href="#about">About</a>
         <a class="btn" href="#projects">Projects</a>
         <a class="btn" href="#skills">Skills</a>
+        <a class="btn" href="#publications">Publications</a>
         <a class="btn" href="#contact">Contact</a>
         <a class="btn" href="Manas_dixit_resume_full_time_20250915.pdf" download="Manas_Dixit_Resume.pdf">Resume</a>
       </div>
@@ -159,56 +179,137 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS (structured) -->
     <section id="projects">
       <h2 class="title">Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <img class="thumb" src="https://img.youtube.com/vi/uFI8JMBfABI/0.jpg" alt="Dynamic SLAM"/>
-          <div class="card-body">
-            <h3>Dynamic Visual SLAM with SegFormer</h3>
-            <p>ORB-SLAM3 + SegFormer masks for robust tracking in dynamic environments.</p>
-            <div class="tags"><span class="tag">VIO/SLAM</span><span class="tag">SegFormer</span><span class="tag">C++</span></div>
-            <div class="row-end"><button class="btn details" data-project="dynamic-slam">→ details</button></div>
+      <p class="subtitle">Grouped by domain to make scanning easier.</p>
+
+      <!-- 1) AUTONOMY -->
+      <div class="proj-block">
+        <div class="proj-h">
+          <h3>Autonomy</h3>
+          <p>SLAM • Sensor Fusion • Navigation</p>
+        </div>
+
+        <div class="proj-sub">
+          <h4>SLAM</h4>
+          <div class="grid">
+            <article class="card narrow">
+              <img class="thumb sm" src="https://img.youtube.com/vi/uFI8JMBfABI/0.jpg" alt="Dynamic SLAM"/>
+              <div class="card-body">
+                <h3>Dynamic Visual SLAM with SegFormer</h3>
+                <p>ORB-SLAM3 + SegFormer masks for robust tracking in dynamic environments.</p>
+                <div class="tags"><span class="tag">VIO/SLAM</span><span class="tag">SegFormer</span><span class="tag">C++</span></div>
+                <div class="row-end"><button class="btn details" data-project="dynamic-slam">→ details</button></div>
+              </div>
+            </article>
           </div>
-        </article>
-        <article class="card">
-          <img class="thumb" src="https://img.youtube.com/vi/2EUyFGxl5i8/0.jpg" alt="CTRA vs CA"/>
-          <div class="card-body">
-            <h3>CTRA Motion Model in EKF Sensor Fusion</h3>
-            <p>Sharper maneuver handling than CA; tuned Q/R and Jacobians in a ROS 2 fusion pipeline.</p>
-            <div class="tags"><span class="tag">EKF</span><span class="tag">CTRA</span><span class="tag">ROS 2</span></div>
-            <div class="row-end"><button class="btn details" data-project="ctra-ekf">→ details</button></div>
+        </div>
+
+        <div class="proj-sub">
+          <h4>Sensor Fusion</h4>
+          <div class="grid">
+            <article class="card narrow">
+              <img class="thumb sm" src="https://img.youtube.com/vi/2EUyFGxl5i8/0.jpg" alt="CTRA vs CA"/>
+              <div class="card-body">
+                <h3>CTRA Motion Model in EKF Sensor Fusion</h3>
+                <p>Sharper maneuver handling than CA; tuned Q/R and Jacobians in a ROS 2 fusion pipeline.</p>
+                <div class="tags"><span class="tag">EKF</span><span class="tag">CTRA</span><span class="tag">ROS 2</span></div>
+                <div class="row-end"><button class="btn details" data-project="ctra-ekf">→ details</button></div>
+              </div>
+            </article>
           </div>
-        </article>
-        <article class="card">
-          <img class="thumb" src="https://img.youtube.com/vi/02knEVV_Q8w/0.jpg" alt="IBVS"/>
-          <div class="card-body">
-            <h3>IBVS for TurtleBot3</h3>
-            <p>Image-space control loop with interaction matrix and closed-loop regulation.</p>
-            <div class="tags"><span class="tag">Control</span><span class="tag">ROS 2</span></div>
-            <div class="row-end"><button class="btn details" data-project="ibvs-tb3">→ details</button></div>
+        </div>
+
+        <div class="proj-sub">
+          <h4>Navigation</h4>
+          <p>Coming soon</p>
+          <div class="grid">
+            <!-- intentionally blank -->
           </div>
-        </article>
-        <article class="card">
-          <img class="thumb" src="https://dummyimage.com/800x450/0d152b/cfe0ff&text=YOLOv4+Training" alt="YOLOv4"/>
-          <div class="card-body">
-            <h3>YOLOv4 Adversarial Training</h3>
-            <p>Custom PyTorch pipeline for robust detection via adversarial augmentation.</p>
-            <div class="tags"><span class="tag">PyTorch</span><span class="tag">Detection</span></div>
-            <div class="row-end"><button class="btn details" data-project="yolov4-adv">→ details</button></div>
-          </div>
-        </article>
-        <!-- New RL project card -->
-        <article class="card">
-          <img class="thumb" src="https://dummyimage.com/800x450/020617/e5e7eb&text=Kinova+Gen3+RL+Control" alt="Kinova Gen3 RL Control"/>
-          <div class="card-body">
-            <h3>RL Control Environment for Kinova Gen3 Lite</h3>
-            <p>Joint-space continuous control environment with curriculum and physics-grounded reward shaping.</p>
-            <div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">Kinova Gen3</span><span class="tag">PyBullet</span></div>
-            <div class="row-end"><button class="btn details" data-project="kinova-rl">→ details</button></div>
-          </div>
-        </article>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- 2) PERCEPTION -->
+      <div class="proj-block">
+        <div class="proj-h">
+          <h3>Perception</h3>
+          <p>Vision-based control and sensing pipelines</p>
+        </div>
+
+        <div class="grid">
+          <article class="card narrow">
+            <img class="thumb sm" src="https://img.youtube.com/vi/02knEVV_Q8w/0.jpg" alt="IBVS"/>
+            <div class="card-body">
+              <h3>IBVS for TurtleBot3</h3>
+              <p>Image-space control loop with interaction matrix and closed-loop regulation.</p>
+              <div class="tags"><span class="tag">Control</span><span class="tag">ROS 2</span></div>
+              <div class="row-end"><button class="btn details" data-project="ibvs-tb3">→ details</button></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- 3) AI -->
+      <div class="proj-block">
+        <div class="proj-h">
+          <h3>AI</h3>
+          <p>Deep learning • Reinforcement learning</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <img class="thumb" src="https://dummyimage.com/800x450/0d152b/cfe0ff&text=YOLOv4+Training" alt="YOLOv4"/>
+            <div class="card-body">
+              <h3>YOLOv4 Adversarial Training</h3>
+              <p>Custom PyTorch pipeline for robust detection via adversarial augmentation.</p>
+              <div class="tags"><span class="tag">PyTorch</span><span class="tag">Detection</span></div>
+              <div class="row-end"><button class="btn details" data-project="yolov4-adv">→ details</button></div>
+            </div>
+          </article>
+
+          <article class="card">
+            <img class="thumb" src="https://img.youtube.com/vi/vhEqvj8y0g4/0.jpg" alt="Kinova Gen3 RL Control"/>
+            <div class="card-body">
+              <h3>RL Control Environment for Kinova Gen3 Lite</h3>
+              <p>Joint-space continuous control environment with curriculum and physics-grounded reward shaping.</p>
+              <div class="tags"><span class="tag">Reinforcement Learning</span><span class="tag">Kinova Gen3</span><span class="tag">PyBullet</span></div>
+              <div class="row-end"><button class="btn details" data-project="kinova-rl">→ details</button></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- 4) CONTROLS -->
+      <div class="proj-block">
+        <div class="proj-h">
+          <h3>Controls</h3>
+          <p>Coming soon</p>
+        </div>
+
+        <div class="grid">
+          <!-- intentionally blank -->
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS (NEW SECTION) -->
+    <section id="publications">
+      <h2 class="title">Publications</h2>
+      <div class="card" style="padding:16px">
+        <h3 style="margin:0 0 8px;font-size:18px;line-height:1.25;font-weight:600;">Modelling of a Transient VCRS and Virtual Optimal Charge Determination for Automobiles</h3>
+        <p style="margin:0 0 12px;font-size:15px;line-height:1.5;color:var(--muted)">
+          Experimental research on the Vapor Compression Refrigeration System (VCRS) used in automobiles and other air conditioning systems is abundant in literature but it comes with inherent problems like the cost of the setup, time consumption, and tediousness of the process. Therefore, the objective of this study is to develop the fully-fledged transient or dynamic model of R134a based VCRS and further utilize it to virtually determine the optimal refrigerant charge quantity. The Simulink model developed in this work is an integration of physics-based mathematical models for each component (compressor, heat exchangers, and expansion valve), working together in a cycle where the compressor dictates the transient process. A sample simulation has been performed by taking 5 bar as the initial pressure of suction and discharge tanks and the steady state results (Discharge pressure, suction pressure, refrigerant mass flow rate, superheat and subcool temperatures) obtained. The results are found to closely follow the similar trends as the experimental results, hence validating the correctness of the Simulink model. Further, Using the proposed transient model, simulations have been performed for different initial state conditions and steady state plots (discharge pressure V/s charge, cooling capacity V/s charge, COP V/s charge, Subcool and Superheat V/s charge) have been constructed. Analysis of these plots shows that the values of cooling capacity and COP attain maxima simultaneously corresponding to 650 grams of charge. Hence, using maximum COP method for optimal charge determination, the optimal charge quantity has been calculated to be around 650 grams. In the end, this work hopes to provide researchers a transient model that can be used as a cost-effective substitute of the experimental process.
+        </p>
+        <div class="row-end">
+          <a class="btn" target="_blank" rel="noreferrer" href="https://www.sae.org/papers/modelling-a-transient-vcrs-virtual-optimal-charge-determination-automobiles-2021-28-0255">Read paper</a>
+        </div>
       </div>
     </section>
 
@@ -303,8 +404,8 @@
         desc:'Redesigned joint-space RL environment for Kinova Gen3 Lite with curriculum and physics-grounded reward shaping.',
         videos:[],
         links:[
-          // You can update this link once the repo is public
-          {href:'https://github.com/Manasdixit02/RL-based-Controller-for-Robotic-Arm-Target-Reaching',label:'Repository'}
+          {href:'https://github.com/Manasdixit02/RL-based-Controller-for-Robotic-Arm-Target-Reaching',label:'Repository'},
+          {href:'https://docs.google.com/presentation/d/1rQDUz1GlFeZDkG1IdVCdqD9odU3jXVqfQyjvVtsxauM/edit?slide=id.g3ae4ee2b002_0_29#slide=id.g3ae4ee2b002_0_29',label:'Slides'}
         ]
       }
     };
@@ -355,7 +456,12 @@
           const card=document.createElement('div');
           card.className='vid';
           card.innerHTML = `
+            <iframe src="https://www.youtube.com/embed/vhEqvj8y0g4" title="YouTube video" allowfullscreen loading="lazy"></iframe>
+            <div class="caption">Kinova Gen3 Lite: RL policy (trained in my modified environment) performing target-reaching control.</div>
             <div class="caption" style="border-top:none">
+              <p style="margin:0 0 8px;font-size:18px;color:var(--muted)">
+                Checkout the slides for full results and more graphics.
+              </p>
               <h3 style="margin-top:0">Project Summary</h3>
 
               <h4>Objective</h4>
@@ -442,7 +548,8 @@
                   <ul>
                     <li>Robotic reaching,</li>
                     <li>Future grasping and manipulation tasks,</li>
-                    <li>Multi-modal (e.g., vision + proprioception) policy learning,</li>
+                    <li>Multi-modal (e.g., vision + proprioception) policy learning,
+                    </li>
                     <li>And sim-to-real transfer studies.</li>
                   </ul>
                 </li>
