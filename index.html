@@ -89,6 +89,13 @@
     .tool img{width:22px;height:22px}
     .tool span{font-size:14px}
     .pill{display:inline-flex;align-items:center;border:1px dashed var(--line);padding:8px 10px;border-radius:999px;color:var(--muted)}
+
+    /* ADDED: side-by-side media layout for mono-3d write-up */
+    .media-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0 14px}
+    .media{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+    .media img{width:100%;height:auto;display:block}
+    .media iframe{width:100%;aspect-ratio:16/9;border:0;display:block}
+    @media (max-width:900px){.media-row{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -249,6 +256,17 @@
               <div class="row-end"><button class="btn details" data-project="ibvs-tb3">→ details</button></div>
             </div>
           </article>
+
+          <!-- ADDED: 2D->3D Single Image Reconstruction project card -->
+          <article class="card narrow">
+            <img class="thumb sm" src="https://img.youtube.com/vi/iy5rMMb7dKg/hqdefault.jpg" alt="2D to 3D Reconstruction"/>
+            <div class="card-body">
+              <h3>3D Reconstruction from a Single Image</h3>
+              <p>Fine-tuned GLPN for monocular depth on KITTI and back-projected depth into a colored 3D point cloud.</p>
+              <div class="tags"><span class="tag">Monocular Depth</span><span class="tag">GLPN</span><span class="tag">3D</span><span class="tag">PyTorch</span></div>
+              <div class="row-end"><button class="btn details" data-project="mono-3d-recon">→ details</button></div>
+            </div>
+          </article>
         </div>
       </div>
 
@@ -390,6 +408,18 @@
           {href:'https://docs.google.com/presentation/d/1BU-yxYh0wP_f9XoPwtZVcTX0MRy9yCk05-bUhChLVbc/edit?usp=sharing',label:'Slides'}
         ]
       },
+
+      /* ADDED: New project entry + detailed write-up + LINKS */
+      'mono-3d-recon': {
+        title:'3D Reconstruction from a Single Image',
+        desc:'Monocular depth + projective geometry pipeline: fine-tuned GLPN on KITTI and back-projected depth into a colored 3D point cloud.',
+        videos:[],
+        links:[
+          {href:'https://docs.google.com/presentation/d/1f5-VLVjZl_s8AzUCQtQWq6iG_EVbJrz6/edit?slide=id.p1#slide=id.p1',label:'Slides'},
+          {href:'https://github.com/SharvaK/RobotVision_project/tree/main',label:'Repository'}
+        ],
+      },
+
       'yolov4-adv': {
         title:'YOLOv4 Adversarial Training',
         desc:'Custom PyTorch pipeline; adversarial augmentation and label smoothing for robustness.',
@@ -452,6 +482,80 @@
           const card=document.createElement('div');
           card.innerHTML = `<h3>ABSTRACT</h3><p>Convolutional Neural Networks (CNNs) have achieved state-of-the-art performance in a wide range of computer vision tasks, including image classification, object detection, and segmentation, owing to advances in training techniques and architectural innovations. However, their susceptibility to adversarial attacks raises serious concerns about their reliability, particularly in safety-critical applications such as autonomous driving. While adversarial training has emerged as a promising defense, its effectiveness is typically limited to the types of attacks seen during training. Moreover, conventional training pipelines terminate learning after convergence, lacking the adaptability to counter evolving adversarial threats encountered during real-world deployment. This project addresses these limitations in the context of object detection for autonomous vehicle perception systems, focusing on CNN-based detectors such as YOLOv4. We propose a self-supervised continual learning pipeline that enables the detector to adapt and improve during deployment by leveraging adversarial inputs in real time. Our input dataset consists of both clean and adversarial examples generated using Fast Gradient Sign Method (FGSM) and Projected Gradient Descent (PGD). We incorporate the MagNet detector to identify adversarial samples during inference, which are then used for training the target YOLOv4 via self-supervised learning mechanism. This mechanism allows the YOLOv4 model to incrementally enhance its robustness through continuous self-supervised updates. Through this adaptive training pipeline, we demonstrate improved resilience of YOLOv4 to adversarial perturbations, achieving a measurable increase in mean Average Precision (mAP) under FGSM and PGD attacks.</p>`;
           g.appendChild(card);
+
+        } else if(id==='mono-3d-recon'){
+          const card=document.createElement('div');
+          card.className='vid';
+          card.innerHTML = `
+            <div class="caption" style="border-top:none">
+              <h3 style="margin:0 0 10px">3D Reconstruction from a Single Image</h3>
+
+              <!-- ADDED: Image + Video side-by-side -->
+              <div class="media-row">
+                <div class="media">
+                  <img
+                    src="https://drive.google.com/uc?export=view&id=1YXJJp49Z94kk6IC3Lsr_okKSgOOkeG4_"
+                    alt="3D Reconstruction Result"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="media">
+                  <iframe
+                    src="https://www.youtube.com/embed/iy5rMMb7dKg"
+                    title="3D Reconstruction Video"
+                    allowfullscreen
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              </div>
+
+              <h4>Overview</h4>
+              <p>This project investigates monocular 3D reconstruction, where a dense 3D representation of a scene or object is inferred from a single RGB image. The goal is to enable depth and geometry perception in scenarios where stereo cameras or depth sensors are unavailable or impractical, such as lightweight robots, drones, and augmented-reality systems. The pipeline leverages modern deep learning–based depth estimation and classical projective geometry to bridge 2D visual input and 3D spatial understanding.</p>
+
+              <h4>Problem Statement</h4>
+              <p>Given a single RGB image captured by a monocular camera, estimate: (1) a dense depth map of the scene, and (2) a corresponding 3D point cloud using known camera geometry. This is an ill-posed problem due to scale ambiguity and missing geometric constraints.</p>
+
+              <h4>Methodology</h4>
+              <h5 style="margin:10px 0 6px">1. Monocular Depth Estimation</h5>
+              <p>Fine-tuned a pretrained transformer-based depth estimation model (GLPN) on the KITTI depth dataset. Input: single RGB image resized to 256×256. Output: dense per-pixel depth prediction. Supervision: ground-truth depth maps from KITTI, scaled appropriately from 16-bit depth encoding. Loss function: Mean Squared Error (MSE) between predicted and ground-truth depth.</p>
+
+              <h5 style="margin:10px 0 6px">2. 2D-to-3D Back-Projection</h5>
+              <p>Modeled the camera using a pinhole camera model. Each pixel (u, v) with predicted depth Z was back-projected into 3D space using camera intrinsics, and the original RGB value was associated with each 3D point to generate a colored point cloud.</p>
+
+              <h5 style="margin:10px 0 6px">3. Post-processing</h5>
+              <p>Removed redundant or invalid depth points and visualized both depth predictions and the reconstructed 3D geometry for qualitative evaluation.</p>
+
+              <h4>Dataset</h4>
+              <p>KITTI Depth Dataset: real-world outdoor driving scenes with sparse LiDAR-based ground-truth depth projected into the camera frame.</p>
+
+              <h4>Results</h4>
+              <p>Successfully reconstructed scene-level 3D point clouds from a single RGB image. Depth predictions captured large-scale scene geometry (roads, vehicles, buildings) and demonstrated feasibility of monocular 3D reconstruction without explicit stereo or LiDAR input.</p>
+
+              <h4>Challenges</h4>
+              <ul>
+                <li>Depth ambiguity and scale sensitivity inherent to monocular vision.</li>
+                <li>Accurate alignment between predicted depth resolution and ground-truth depth maps.</li>
+                <li>High computational cost of fine-tuning transformer-based vision models.</li>
+                <li>No explicit surface connectivity — output limited to point clouds rather than full meshes.</li>
+              </ul>
+
+              <h4>Future Work</h4>
+              <ul>
+                <li>Shape completion and surface reconstruction to generate watertight 3D meshes from partial point clouds.</li>
+                <li>Incorporate multi-view consistency when sequential images are available.</li>
+                <li>Improve geometric consistency using smoothness and edge-aware depth losses.</li>
+              </ul>
+
+              <h4>Key Takeaways</h4>
+              <ul>
+                <li>Built an end-to-end monocular 3D reconstruction pipeline combining deep learning and projective geometry.</li>
+                <li>Hands-on experience with transformer-based depth models, depth supervision, and 3D back-projection.</li>
+                <li>Strengthened understanding of the gap between 2D perception and 3D spatial reasoning in real-world settings.</li>
+              </ul>
+            </div>
+          `;
+          g.appendChild(card);
+
         } else if(id==='kinova-rl') {
           const card=document.createElement('div');
           card.className='vid';
