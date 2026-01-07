@@ -230,9 +230,23 @@
 
         <div class="proj-sub">
           <h4>Navigation</h4>
-          <p>Coming soon</p>
           <div class="grid">
-            <!-- intentionally blank -->
+            <!-- Thesis project card under Navigation -->
+            <article class="card narrow">
+              <img class="thumb sm" src="https://img.youtube.com/vi/JlAoLlOukuA/hqdefault.jpg" alt="Thesis Project Navigation"/>
+              <div class="card-body">
+                <h3>Thesis: Learning-Based Navigation in Unstructured Cornfields</h3>
+                <p>Mapping + Nav2 autonomy in Isaac Sim, then expert teleop data collection to train an imitation-learning local planner for unstructured cornfields.</p>
+                <div class="tags">
+                  <span class="tag">Isaac Sim</span>
+                  <span class="tag">ROS 2</span>
+                  <span class="tag">Nav2</span>
+                  <span class="tag">SLAM Toolbox</span>
+                  <span class="tag">Imitation Learning</span>
+                </div>
+                <div class="row-end"><button class="btn details" data-project="thesis-cornfield-nav">→ details</button></div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
@@ -257,7 +271,7 @@
             </div>
           </article>
 
-          <!-- ADDED: 2D->3D Single Image Reconstruction project card -->
+          <!-- 2D->3D Single Image Reconstruction project card -->
           <article class="card narrow">
             <img class="thumb sm" src="https://img.youtube.com/vi/iy5rMMb7dKg/hqdefault.jpg" alt="2D to 3D Reconstruction"/>
             <div class="card-body">
@@ -317,7 +331,7 @@
       </div>
     </section>
 
-    <!-- PUBLICATIONS (NEW SECTION) -->
+    <!-- PUBLICATIONS -->
     <section id="publications">
       <h2 class="title">Publications</h2>
       <div class="card" style="padding:16px">
@@ -331,7 +345,7 @@
       </div>
     </section>
 
-    <!-- SKILLS (tools/software only, with logos) -->
+    <!-- SKILLS -->
     <section id="skills">
       <h2 class="title">Skills — Tools & Software</h2>
       <div class="skills-logos" id="skillsGrid"></div>
@@ -409,7 +423,7 @@
         ]
       },
 
-      /* ADDED: New project entry + detailed write-up + LINKS */
+      /* New project entry + LINKS */
       'mono-3d-recon': {
         title:'3D Reconstruction from a Single Image',
         desc:'Monocular depth + projective geometry pipeline: fine-tuned GLPN on KITTI and back-projected depth into a colored 3D point cloud.',
@@ -418,6 +432,14 @@
           {href:'https://docs.google.com/presentation/d/1f5-VLVjZl_s8AzUCQtQWq6iG_EVbJrz6/edit?slide=id.p1#slide=id.p1',label:'Slides'},
           {href:'https://github.com/SharvaK/RobotVision_project/tree/main',label:'Repository'}
         ],
+      },
+
+      /* Thesis project entry */
+      'thesis-cornfield-nav': {
+        title:'Thesis Project: Autonomous Navigation in Unstructured Agricultural Environments',
+        desc:'Mapping + Nav2 autonomy in Isaac Sim, then expert teleop data collection to train an imitation-learning local planner for unstructured cornfields. Deployment and evaluation are in progress.',
+        videos:[],
+        links:[]
       },
 
       'yolov4-adv': {
@@ -490,7 +512,7 @@
             <div class="caption" style="border-top:none">
               <h3 style="margin:0 0 10px">3D Reconstruction from a Single Image</h3>
 
-              <!-- ADDED: Image + Video side-by-side -->
+              <!-- Image + Video side-by-side -->
               <div class="media-row">
                 <div class="media">
                   <img
@@ -625,7 +647,7 @@
                 <li>A time-based bonus encouraging faster convergence.</li>
               </ul>
 
-              <p>Together, these components promote accurate, stable, smooth, and safe multi-joint motion.</p>
+              <p>Together, these components promote accurate, stable, smoothness, and safe multi-joint motion.</p>
 
               <h4>Curriculum Learning Framework</h4>
               <ul>
@@ -658,6 +680,70 @@
                   </ul>
                 </li>
               </ul>
+            </div>
+          `;
+          g.appendChild(card);
+        } else if(id==='thesis-cornfield-nav'){
+          const card=document.createElement('div');
+          card.className='vid';
+          card.innerHTML = `
+            <div class="caption" style="border-top:none">
+              <h3 style="margin:0 0 10px">Thesis Project: Autonomous Navigation in Unstructured Agricultural Environments</h3>
+
+              <h4>Stage 1: Mapping</h4>
+              <div class="media-row">
+                <div class="media">
+                  <iframe
+                    src="https://www.youtube.com/embed/JlAoLlOukuA"
+                    title="Stage 1: Mapping Demo"
+                    allowfullscreen
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              </div>
+              <p>The first stage of this thesis focuses on creating a reliable mapping pipeline in a simulated agricultural environment.</p>
+              <p>A virtual cornfield was built in NVIDIA Isaac Sim to replicate the structure and constraints of real crop rows. A ground rover was spawned in this environment and equipped with a LiDAR sensor and an RGB camera for perception. (A demo video shows the rover operating inside the simulated cornfield.)</p>
+              <p>To enable controlled exploration, a custom ROS 2 teleoperation node was developed. This node reads keyboard inputs from the user and sends velocity commands to the rover in Isaac Sim, allowing manual navigation through the field. During teleoperation, the simulator publishes RGB images, LiDAR scans, and odometry data over ROS 2 topics.</p>
+              <p>For mapping, SLAM Toolbox was launched in online asynchronous mode, allowing the map to be built in real time as the rover explored the environment. After sufficient coverage, the map_saver_cli node from the Nav2 map_server package was used to save the generated occupancy grid map for later use.</p>
+              <p>This stage establishes a complete simulation-to-ROS 2 mapping workflow tailored for agricultural environments.</p>
+
+              <h4>Stage 2: Autonomous Path Planning and Navigation using ROS 2 Nav2</h4>
+              <div class="media-row">
+                <div class="media">
+                  <iframe
+                    src="https://www.youtube.com/embed/KbQgsVpca_4"
+                    title="Stage 2: Nav2 Autonomous Navigation Demo"
+                    allowfullscreen
+                    loading="lazy"
+                  ></iframe>
+                </div>
+              </div>
+              <p>In the second stage, the saved map from Stage 1 was used to enable fully autonomous navigation using the ROS 2 Navigation (Nav2) stack.</p>
+              <p>The Isaac Sim cornfield environment was launched with the rover and its sensors active, followed by the Nav2 bringup pipeline, which loads the occupancy grid map and initializes localization, global planning, local planning, and control modules.</p>
+              <p>Autonomous navigation was executed through RViz, where the rover was first localized by setting an initial pose on the map. A goal pose was then specified, after which Nav2 automatically generated a global path and commanded the rover to navigate toward the target. (A screen-recorded video demonstrates the rover autonomously planning and moving through the environment.)</p>
+              <p>While effective in structured settings, experiments showed that classical costmap-based local planners struggle in highly unstructured agricultural environments, motivating a shift toward learning-based local planning.</p>
+
+              <h4>Stage 3: Expert Data Collection for Imitation Learning</h4>
+              <div class="media-row">
+                <div class="media">
+                  <img
+                    src="loss_curve_multi.png"
+                    alt="Imitation learning loss curves (train/val/test)"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <p>To address these limitations, the third stage focuses on collecting expert demonstrations for imitation learning–based local planning.</p>
+              <p>A ROS 2 teleoperation node was used to manually operate the rover inside the simulated cornfield, deliberately generating diverse expert behaviors such as straight-row traversal, curved path following, obstacle avoidance, speed modulation based on free space, and U-turn maneuvers for row transitions.</p>
+              <p>During teleoperation, multi-modal data was recorded using rosbag, including control commands (geometry_msgs/Twist), RGB images, LiDAR scans, odometry, and goal pose information. These rosbags were then post-processed offline to align sensor observations with expert actions, forming structured datasets for supervised learning. An imitation learning policy was trained on this data, with performance monitored using training, validation, and test loss curves.</p>
+              <p>This stage enables the transition from rule-based navigation to a data-driven local planner capable of capturing human driving intuition in unstructured environments.</p>
+
+              <h4>Stage 4: Learned Policy Deployment and Evaluation (In Progress)</h4>
+              <p>The fourth stage focuses on deploying the trained imitation learning policy within the navigation stack and evaluating its performance in simulation. This includes integrating the learned policy as a local planner, benchmarking it against classical planners, and evaluating metrics such as path tracking quality, collision avoidance, smoothness, and robustness across diverse cornfield layouts.</p>
+              <p>This stage is currently in progress and will be updated as experiments are completed.</p>
+
+              <h4>Next Step: Real-World Deployment</h4>
+              <p>Following successful simulation-based evaluation, the final phase of this work will involve deploying the learned policy on the physical ground rover and evaluating its performance in real agricultural environments, closing the simulation-to-real (sim-to-real) loop.</p>
             </div>
           `;
           g.appendChild(card);
